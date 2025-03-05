@@ -8,6 +8,8 @@ import Profile from "../views/Profile.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
 
+import NuevaEntrega from "../views/NuevaEntrega.vue";
+
 const routes = [
   {
     path: "/",
@@ -53,6 +55,13 @@ const routes = [
     path: "/signup",
     name: "Signup",
     component: Signup,
+  },
+  
+  // 🔹 Nueva ruta para crear una nueva entrega
+  {
+    path: "/entregas/nueva",
+    name: "NuevaEntrega",
+    component: NuevaEntrega,
   },
 ];
 

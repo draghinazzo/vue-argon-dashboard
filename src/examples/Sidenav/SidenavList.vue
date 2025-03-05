@@ -1,10 +1,10 @@
 <script setup>
-import { computed } from "vue";
+import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 
 import SidenavItem from "./SidenavItem.vue";
-import SidenavCard from "./SidenavCard.vue";
+// import SidenavCard from "./SidenavCard.vue";
 
 const store = useStore();
 const isRTL = computed(() => store.state.isRTL);
@@ -14,7 +14,16 @@ const getRoute = () => {
   const routeArr = route.path.split("/");
   return routeArr[1];
 };
+
+// Definir la variable reactiva para abrir/cerrar el menú de catálogos
+const catalogosOpen = ref(false);
+
+// Método para alternar el estado del menú
+const toggleCatalogos = () => {
+  catalogosOpen.value = !catalogosOpen.value;
+};
 </script>
+
 <template>
   <div
     class="collapse navbar-collapse w-auto h-auto h-100"
@@ -32,7 +41,35 @@ const getRoute = () => {
           </template>
         </sidenav-item>
       </li>
-
+      <!-- Catálogos -->
+      <li class="nav-item">
+        <a
+          class="nav-link d-flex align-items-center"
+          href="#"
+          @click.prevent="toggleCatalogos"
+        >
+          <i class="ni ni-folder-17 text-info text-sm opacity-10"></i>
+          <span class="ml-2">Catálogos</span>
+          <i class="ml-auto" :class="catalogosOpen ? 'ni ni-bold-down' : 'ni ni-bold-right'"></i>
+        </a>
+        <!-- Submenú -->
+        <b-collapse v-model="catalogosOpen">
+          <ul class="nav flex-column pl-3">
+            <li class="nav-item">
+              <sidenav-item to="/dashboard-default" navText="Componentes" />
+            </li>
+            <li class="nav-item">
+              <sidenav-item to="/dashboard-default" navText="Productos" />
+            </li>
+            <li class="nav-item">
+              <sidenav-item to="/dashboard-default" navText="Proveedores" />
+            </li>
+          </ul>
+        </b-collapse>
+      </li>
+    </ul>
+  </div>
+<!--
       <li class="nav-item">
         <sidenav-item
           to="/tables"
@@ -137,9 +174,9 @@ const getRoute = () => {
         </sidenav-item>
       </li>
     </ul>
-  </div>
+  </div>-->
 
-  <div class="pt-3 mx-3 mt-3 sidenav-footer">
+  <div class="pt-3 mx-3 mt-3 sidenav-footer"><!--
     <sidenav-card
       :card="{
         title: 'Need Help?',
@@ -159,6 +196,6 @@ const getRoute = () => {
           },
         ],
       }"
-    />
+    />-->
   </div>
 </template>

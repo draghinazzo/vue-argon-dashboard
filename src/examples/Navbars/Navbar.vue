@@ -1,10 +1,10 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import Breadcrumbs from "../Breadcrumbs.vue";
 
-const showMenu = ref(false);
+//const showMenu = ref(false);
 const store = useStore();
 const isRTL = computed(() => store.state.isRTL);
 
@@ -18,14 +18,14 @@ const currentDirectory = computed(() => {
   return dir.charAt(0).toUpperCase() + dir.slice(1);
 });
 
-const minimizeSidebar = () => store.commit("sidebarMinimize");
-const toggleConfigurator = () => store.commit("toggleConfigurator");
+//const minimizeSidebar = () => store.commit("sidebarMinimize");
+//const toggleConfigurator = () => store.commit("toggleConfigurator");
 
-const closeMenu = () => {
+/*const closeMenu = () => {
   setTimeout(() => {
     showMenu.value = false;
   }, 100);
-};
+};*/
 </script>
 <template>
   <nav
@@ -50,6 +50,7 @@ const closeMenu = () => {
           class="pe-md-3 d-flex align-items-center"
           :class="isRTL ? 'me-md-auto' : 'ms-md-auto'"
         >
+          <!--
           <div class="input-group">
             <span class="input-group-text text-body">
               <i class="fas fa-search" aria-hidden="true"></i>
@@ -59,8 +60,9 @@ const closeMenu = () => {
               class="form-control"
               :placeholder="isRTL ? 'أكتب هنا...' : 'Type here...'"
             />
-          </div>
+          </div>-->
         </div>
+        <!--
         <ul class="navbar-nav justify-content-end">
           <li class="nav-item d-flex align-items-center">
             <router-link
@@ -216,7 +218,7 @@ const closeMenu = () => {
               </li>
             </ul>
           </li>
-        </ul>
+        </ul>-->
       </div>
     </div>
   </nav>
